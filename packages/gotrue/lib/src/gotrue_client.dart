@@ -372,16 +372,6 @@ class GoTrueClient {
     return authSessionUrlResponse;
   }
 
-  /// Allows signing in with an ID token issued by certain supported providers.
-  /// The [idToken] is verified for validity and a new session is established.
-  /// This method of signing in only supports [OAuthProvider.google], [OAuthProvider.apple], [OAuthProvider.kakao] or [OAuthProvider.keycloak].
-  ///
-  /// If the ID token contains an `at_hash` claim, then [accessToken] must be
-  /// provided to compare its hash with the value in the ID token.
-  ///
-  /// If the ID token contains a `nonce` claim, then [nonce] must be
-  /// provided to compare its hash with the value in the ID token.
-  ///
   /// Sign in with ID token (internal helper method).
   Future<AuthResponse> _signInWithIdToken({
     required OAuthProvider provider,
@@ -435,11 +425,18 @@ class GoTrueClient {
     return authResponse;
   }
 
+  /// Allows signing in with an ID token issued by certain supported providers.
+  /// The [idToken] is verified for validity and a new session is established.
+  /// This method of signing in only supports [OAuthProvider.google], [OAuthProvider.apple], [OAuthProvider.kakao] or [OAuthProvider.keycloak].
+  ///
+  /// If the ID token contains an `at_hash` claim, then [accessToken] must be
+  /// provided to compare its hash with the value in the ID token.
+  ///
+  /// If the ID token contains a `nonce` claim, then [nonce] must be
+  /// provided to compare its hash with the value in the ID token.
+  ///
   /// [captchaToken] is the verification token received when the user
   /// completes the captcha on the app.
-  ///
-  /// This method is experimental.
-  @experimental
   Future<AuthResponse> signInWithIdToken({
     required OAuthProvider provider,
     required String idToken,
@@ -951,9 +948,6 @@ class GoTrueClient {
   ///
   /// [captchaToken] is the verification token received when the user
   /// completes the captcha on the app.
-  ///
-  /// This method is experimental.
-  @experimental
   Future<AuthResponse> linkIdentityWithIdToken({
     required OAuthProvider provider,
     required String idToken,
